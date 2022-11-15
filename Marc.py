@@ -1,3 +1,4 @@
+# Meridional arc distance
 def Marc(a, b, lat):
     f = (a - b)/a
     b0 = a*(1 - 1/2*f + 1/16*f**2 + 1/32*f**3)
