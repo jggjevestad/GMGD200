@@ -1,10 +1,42 @@
-# Geodetiske funksjoner (GMGD200 / NavLib)
+# Geodetiske funksjoner GMGD200
 
-Oversikt over Python-funksjonshoder basert på formelsamlingen for **GMGD200** og implementasjonskonvensjonene i **`NavLib`** (`navlib.geodesy`, `navlib.rotation`, `navlib.convert`).
+Oversikt over Python-funksjonshoder basert på formelsamlingen for **GMGD200**.
+
 
 ---
 
-## 1. Ellipsoide- og krumningsradier (`navlib.geodesy`)
+## 1. Vinkelenheter
+
+```python
+def deg2rad(deg: float) -> float:
+    """Convert degrees to radians."""
+
+def rad2deg(rad: float) -> float:
+    """Convert radians to degrees."""
+
+def grad2rad(grad: float) -> float:
+    """Convert gradians (gon) to radians."""
+
+def rad2grad(rad: float) -> float:
+    """Convert radians to gradians (gon)."""
+
+def dms2deg(d: float, m: float, s: float) -> float:
+    """Convert degrees, minutes, seconds to decimal degrees."""
+
+def deg2dms(deg: float) -> tuple[int, int, float]:
+    """Convert decimal degrees to (degrees, minutes, seconds)."""
+
+def dms2rad(d: float, m: float, s: float) -> float:
+    """Convert degrees, minutes, seconds to radians."""
+
+def rad2dms(rad: float) -> tuple[int, int, float]:
+    """Convert radians to (degrees, minutes, seconds)."""
+```
+
+
+---
+
+## 2. Ellipsoide- og krumningsradier
 
 ```python
 def Mrad(a: float, b: float, lat: float) -> float:
@@ -26,9 +58,10 @@ def footlat(a: float, b: float, x: float, lat0: float) -> float:
     """Calculate footpoint latitude from arc distance / northing."""
 ```
 
+
 ---
 
-## 2. Koordinatkonverteringer ECEF og toposentriske rammer (`navlib.geodesy`)
+## 3. Koordinatkonverteringer, ECEF og toposentriske rammer
 
 ```python
 import numpy as np
@@ -61,7 +94,7 @@ def enu2ECEF(lat0: float, lon0: float, e: float, n: float, u: float) -> NDArray:
 
 ---
 
-## 3. Geodetiske hovedoppgaver (`navlib.geodesy`)
+## 4. Geodetiske hovedoppgaver
 
 ```python
 def geod1(a: float, b: float, lat1: float, lon1: float, az1: float, d: float) -> tuple[float, float, float]:
@@ -73,7 +106,7 @@ def geod2(a: float, b: float, lat1: float, lon1: float, lat2: float, lon2: float
 
 ---
 
-## 4. Transversal Mercator og kartprojeksjoner (`navlib.geodesy`)
+## 5. Transversal Mercator og kartprojeksjoner
 
 ```python
 def geod2TMgrid(
@@ -104,7 +137,7 @@ def TMscale2(a: float, b: float, x: float, y: float, lat0: float) -> float:
 
 ---
 
-## 5. Rotasjoner og koordinatrammer (`navlib.rotation`)
+## 6. Rotasjoner
 
 ```python
 def Rx(rx: float) -> NDArray:
@@ -118,23 +151,11 @@ def Rz(rz: float) -> NDArray:
 
 def Ce_g(lat: float, lon: float) -> NDArray:
     """Rotate from Earth-Centered Earth-Fixed frame (e-frame) to local geographic frame (g-frame / NED)."""
-
-def Cb_g(roll: float, pitch: float, yaw: float) -> NDArray:
-    """Rotate from body frame (b-frame) to navigation frame (g-frame): Rz(yaw) @ Ry(pitch) @ Rx(roll)."""
-
-def euler2dcm(roll: float, pitch: float, yaw: float) -> NDArray:
-    """Convert Euler angles (roll, pitch, yaw) to Direction Cosine Matrix (DCM)."""
-
-def dcm2euler(C: NDArray) -> tuple[float, float, float]:
-    """Convert Direction Cosine Matrix (DCM) to Euler angles (roll, pitch, yaw)."""
-
-def acc2euler(ax: float, ay: float, az: float) -> tuple[float, float]:
-    """Estimate roll and pitch from accelerometer specific force measurements (ZUPT)."""
 ```
 
 ---
 
-## 6. Kovarians og usikkerhet (`navlib.geodesy`)
+## 7. Kovarians og usikkerhet
 
 ```python
 def std2cov(std_corr: tuple[float, float, float, float, float, float]) -> NDArray:
@@ -142,33 +163,6 @@ def std2cov(std_corr: tuple[float, float, float, float, float, float]) -> NDArra
 
 def cov2std(C: NDArray) -> tuple[float, float, float, float, float, float]:
     """Convert 3x3 covariance matrix to standard deviations and correlation coefficients."""
-```
-
----
-
-## 7. Sfærisk trigonometri og n-vektor (`navlib.spheretrig` / `navlib.convert`)
-
-```python
-def arctanc(y: float, x: float) -> float:
-    """Modified arctan2 returning a quadrant-independent angle in [0, 2*pi), e.g. azimuth."""
-
-def geod2nvec(lat: float, lon: float) -> NDArray:
-    """Convert geodetic latitude and longitude to 3D normal unit vector (n-vector)."""
-
-def nvec2geod(n: NDArray) -> tuple[float, float]:
-    """Convert 3D normal unit vector (n-vector) to geodetic latitude and longitude (lat, lon)."""
-
-def nvec_angle(n1: NDArray, n2: NDArray) -> float:
-    """Calculate central angular distance between two n-vectors."""
-
-def spher_cos_side(a: float, b: float, C: float) -> float:
-    """Spherical cosine rule for side c: cos(c) = cos(a)*cos(b) + sin(a)*sin(b)*cos(C)."""
-
-def spher_sin_angle(a: float, c: float, A: float) -> float:
-    """Spherical sine rule for angle C: sin(C) = sin(A)*sin(c) / sin(a)."""
-
-def spher_pyth(a: float, b: float) -> float:
-    """Spherical Pythagorean theorem for right spherical triangle (C = pi/2): cos(c) = cos(a)*cos(b)."""
 ```
 
 ---
@@ -189,13 +183,13 @@ def red_az_skew(lat1: float, lat2: float, az: float, h2: float, a: float, b: flo
     """Azimuth reduction for skew normals: delta_s."""
 
 def red_az_defl(az: float, z: float, xi: float, eta: float) -> float:
-    """Azimuth reduction for deflection of the vertical: delta_d = -(xi*sin(az) - eta*cos(az)) * cot(z)."""
+    """Azimuth reduction for deflection of the vertical."""
 
 def zenith_refr_free(d4: float, dH: float, Hm: float, Ra: float) -> float:
     """Calculate refraction-free geometric zenith angle z."""
 
 def grav_height(h: float, M: float, R: float, G: float) -> float:
-    """Gravity acceleration as a function of geometric height: g(h) = G*M / (R + h)^2."""
+    """Gravity acceleration as a function of geometric height"""
 
 def norm_grav1980(lat: float) -> float:
     """Normal gravity from the International Gravity Formula 1980 (Somigliana)."""
@@ -203,30 +197,3 @@ def norm_grav1980(lat: float) -> float:
 
 ---
 
-## 9. Vinkelenhetskonvertering (`navlib.convert`)
-
-```python
-def deg2rad(deg: float) -> float:
-    """Convert degrees to radians."""
-
-def rad2deg(rad: float) -> float:
-    """Convert radians to degrees."""
-
-def grad2rad(grad: float) -> float:
-    """Convert gradians (gon) to radians."""
-
-def rad2grad(rad: float) -> float:
-    """Convert radians to gradians (gon)."""
-
-def dms2deg(d: float, m: float, s: float) -> float:
-    """Convert degrees, minutes, seconds to decimal degrees."""
-
-def deg2dms(deg: float) -> tuple[int, int, float]:
-    """Convert decimal degrees to (degrees, minutes, seconds)."""
-
-def dms2rad(d: float, m: float, s: float) -> float:
-    """Convert degrees, minutes, seconds to radians."""
-
-def rad2dms(rad: float) -> tuple[int, int, float]:
-    """Convert radians to (degrees, minutes, seconds)."""
-```
