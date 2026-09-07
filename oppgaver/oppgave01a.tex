@@ -1,0 +1,81 @@
+\documentclass[a4paper, norsk, 11pt, twoside]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[norsk]{babel}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{parskip}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{siunitx}
+
+\begin{document}
+
+\begin{center}
+   \includegraphics[width=40mm]{nmbu.pdf}\\ \vspace{10mm}
+   \huge{GMGD200}\\ \vspace{10mm}
+\end{center}
+
+\textbf{Oppgave 1a - Koordinatsystemer}
+
+\textit{Sfæriske koordinater}
+
+Gitt posisjon for bakkepunktet $P$ ved Tyholttårnet i Trondheim:
+\begin{align*}
+    \phi_{P}=&\ang{63;25;20.31234}\\
+    \Delta\lambda=&\ang{-0;17;43.85880}\\
+    h_{P}=&\SI{165.432}{\meter}
+\end{align*}
+
+\begin{enumerate}
+\item 
+  \begin{enumerate}
+  \item $\lambda_{P}$ er oppgitt som et avvik $\Delta\lambda$ relativt akse III i det historiske NGO1948-systemet. Sentralmeridianen $\lambda_{0}$ for akse III er gitt: $\lambda_{0}=\ang{10;43;22.5}$.
+    \begin{enumerate}
+    \item Beregn den geodetiske lengden $\lambda_{P} = \lambda_{0} + \Delta\lambda$ relativt Greenwich-meridianen i grader, minutter og sekunder.
+    \item Uttrykk $\phi_{P}$ og $\lambda_{P}$ i henholdsvis desimalgrader, radianer og gon.
+    \item Hvor mange grader og gon tilsvarer $1\text{ radian}$?
+    \item Hvor mange radianer tilsvarer en vinkel på $100\text{ gon}$ ($90^{\circ}$)?
+    \item Velg en sfærisk jordradius $R = \SI{6378137}{\meter}$. Betrakt $\{\phi_{P},\lambda_{P},h_{P}\}$ som sfæriske koordinater og beregn de tilhørende jordsentriske kartesiske (ECEF) koordinatene $\{X_{P},Y_{P},Z_{P}\}$.
+    \item Hvilken enhet og hvilket origo har ECEF-koordinatsystemet?
+    \end{enumerate} 
+  \item På toppen av Tyholttårnet står et antennepunkt $T$ nøyaktig $\SI{124.000}{\meter}$ vertikalt over bakkepunktet $P$ ($h_{T} = h_{P} + \SI{124.000}{\meter}$ ved uendret $\phi$ og $\lambda$).
+    \begin{enumerate}
+    \item Beregn de sfæriske ECEF-koordinatene $\{X_{T}, Y_{T}, Z_{T}\}$ for antennepunktet $T$.
+    \item Finn koordinatforskjellen $(\Delta X, \Delta Y, \Delta Z) = (X_T - X_P, Y_T - Y_P, Z_T - Z_P)$ og vis at den romlige euklidske avstanden tilsvarer tårnhøyden.
+    \end{enumerate}
+  \item Anta at et måleavvik gir en endring i ECEF-koordinatene til $P$ på $\Delta X = +\SI{100.0}{\meter}$, $\Delta Y = +\SI{100.0}{\meter}$ og $\Delta Z = -\SI{50.0}{\meter}$, slik at det nye punktet er $P'$.
+    \begin{enumerate}
+    \item Beregn de nye sfæriske koordinatene $\{\phi', \lambda', h'\}$ for punktet $P'$.
+    \item Hvor stor er differansen $(P' - P)$ uttrykt i henholdsvis buesekunder for $\phi$ og $\lambda$, og i meter for $h$?
+    \item Forklar kort hvorfor en positiv endring i $Z$-koordinaten i hovedsak påvirker breddegraden $\phi$ og høyden $h$ ved en høy breddegrad som i Trondheim.
+    \end{enumerate}
+  \end{enumerate}
+
+\newpage
+
+\textit{Ellipsoidiske koordinater}
+\item
+  \begin{enumerate}
+  \item Datumet EUREF89 benytter referanseellipsoiden GRS80 med store halvakse $a=\SI{6378137}{\meter}$ og første numeriske eksentrisitet i andre potens $e^{2}=6694380.02290 \cdot 10^{-9}$. Beregn følgende ellipsoidiske parametere:
+  \begin{enumerate}
+    \item Lille halvakse ($b$)
+    \item Flattrykning ($f$)
+    \item Andre numeriske eksentrisitet ($e'^{2}$)
+    \item Forskjellen mellom halvaksene ($a-b$)
+    \item Normalkrumningsradien (krumningsradien i første vertikal) $N(\phi_P)$ for punkt $P$.
+  \end{enumerate}
+  \item Vis matematisk at den sfæriske transformasjonen $\{\phi,\lambda,h\} \rightarrow \{X,Y,Z\}$ er et spesialtilfelle av den ellipsoidiske transformasjonen (hint: sett $a=b=R$ og dermed $e^2=0$).
+  \item Betrakt koordinatene $\{\phi_{P},\lambda_{P},h_{P}\}$ til bakkepunktet $P$ som ellipsoidiske koordinater på GRS80. Beregn de korrekte ellipsoidiske ECEF-koordinatene $\{X_{P},Y_{P},Z_{P}\}$.
+  \item Hvor stor er differansen mellom de ellipsoidiske ECEF-koordinatene og de sfæriske ECEF-koordinatene fra deloppgave 1(a)? Beregn både komponentvise differanser $(\Delta X, \Delta Y, \Delta Z)$ og den totale romlige 3D-avstanden.
+  \item Vinkel- og bueberegninger:
+  \begin{enumerate}
+    \item Hvor mange meter på jordoverflaten ($R = \SI{6378137}{\meter}$) tilsvarer en endring på $1''$ (ett buesekund) i henholdsvis bredde ($\Delta\phi = 1''$) og lengde ($\Delta\lambda = 1''$) ved Tyholttårnets breddegrad?
+    \item Hvorfor er en lengdegradsforskjell på $1''$ vesentlig kortere i meter i Trondheim enn ved ekvator?
+  \end{enumerate}
+  \item Beregn de ellipsoidiske koordinatene $\{\phi_{P},\lambda_{P},h_{P}\}$ fra de ellipsoidiske ECEF-koordinatene ved hjelp av en iterativ prosedyre. Oppgi hvor mange iterasjoner som kreves før vinkelendringen er under $10^{-10}\text{ rad}$.
+  \item Beregn de samme koordinatene $\{\phi_{P},\lambda_{P},h_{P}\}$ ved hjelp av Bowrings lukkede formel (1976).
+  \item Sammenlign iterasjonsmetoden og Bowrings metode med hensyn til beregningskompleksitet, antall regnesteg og praktisk anvendelse i geodetisk programvare.
+  \end{enumerate}
+\end{enumerate}
+
+\end{document}

@@ -20,13 +20,13 @@ def grad2rad(grad: float) -> float:
 def rad2grad(rad: float) -> float:
     """Convert radians to gradians (gon)."""
 
-def dms2deg(d: float, m: float, s: float) -> float:
+def dms2deg(dms: tuple[float, float, float]) -> float:
     """Convert degrees, minutes, seconds to decimal degrees."""
 
 def deg2dms(deg: float) -> tuple[int, int, float]:
     """Convert decimal degrees to (degrees, minutes, seconds)."""
 
-def dms2rad(d: float, m: float, s: float) -> float:
+def dms2rad(dms: tuple[float, float, float]) -> float:
     """Convert degrees, minutes, seconds to radians."""
 
 def rad2dms(rad: float) -> tuple[int, int, float]:
