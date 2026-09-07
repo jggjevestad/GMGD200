@@ -1,0 +1,196 @@
+\documentclass[a4paper, norsk, 11pt, twoside]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[norsk]{babel}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{parskip}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{siunitx}
+
+\begin{document}
+
+\begin{center}
+   \includegraphics[width=40mm]{nmbu.pdf}\\ \vspace{10mm}
+   \huge{GMGD200}\\ \vspace{10mm}
+\end{center}
+
+\textbf{Øving 1 - Koordinatsystemer (Løsning)}
+
+\textit{Sfæriske koordinater}
+
+Gitt posisjon for punkt $P$:
+\begin{align*}
+    \phi_{P}=&59^{\circ}40^{\prime}01.10173^{\prime\prime}\\
+    \Delta\lambda=&0^{\circ}3^{\prime}15.31987^{\prime\prime}\\
+    h_{P}=&\SI{156.228}{\meter}
+\end{align*}
+
+\begin{enumerate}
+\item 
+  \begin{enumerate}
+  \item $\lambda_{P}$ er gitt relativt akse III i det norske NGO1948 systemet. $\lambda_{0}$ for akse III er gitt: $\lambda_{0}=10^{\circ}43^{\prime}22.5^{\prime\prime}$
+    \begin{enumerate}
+    \item Beregn $\lambda_{P}= \lambda_{0} + \Delta\lambda$ relativt Greenwhich meridianen.\\
+    \textit{Svar}:
+    \begin{equation*}
+      \lambda_{P}=\lambda_{0} + \Delta\lambda=\ang{10;46;37.81987}
+    \end{equation*}
+    
+    \item Uttrykk $\phi$ og $\lambda$ i grader og radianer.\\
+    \textit{Svar}:
+    \begin{align*}
+      \phi_{P}=&\SI{59.6669727028}{\degree}\frac{\pi}{\SI{180}{\degree}} \rightarrow  \phi_{P}=1.0413851284 \\
+      \lambda_{P}=&\SI{10.7771721861}{\degree}\frac{\pi}{\SI{180}{\degree}} \rightarrow  \lambda_{P}=0.1880971387
+    \end{align*}
+    
+    \item Hvor mange grader en 1 radian?\\
+    \textit{Svar}:
+    \begin{equation*}
+      1 \cdot \frac{\SI{180}{\degree}}{\pi}=\SI{57.295780}{\degree}
+    \end{equation*}        
+    
+    \item Hvor mange radianer er $\SI{90}{\degree}$?\\
+    \textit{Svar}:
+    \begin{equation*}
+       \SI{90}{\degree} \cdot \frac{\pi}{\SI{180}{\degree}}=\pi/2
+    \end{equation*}
+    
+    \item Velg $R = \SI{6378137}{\meter}$. Betrakt $\{\phi_{P},\lambda_{P},h_{P}\}$ som sfæriske koordinater og beregn de jordsentriske (ECEF) koordinatene $\{X_{P},Y_{P},Z_{P}\}$ for punkt $P$.\\
+   \textit{Svar}:
+   \begin{equation*}
+     P=
+     \begin{bmatrix}
+       \SI{3164382.956}{\meter}\\
+       \SI{602331.798}{\meter}\\
+       \SI{5505134.096}{\meter}
+     \end{bmatrix}
+   \end{equation*} 
+    
+    \item Hvilken enhet har de jordsentriske (ECEF) koordinatene?\\
+    \textit{Svar}: meter
+    
+    \end{enumerate} 
+  \item Legg til $\SI{100}{\meter}$ på $X$-koordinaten til punkt $P$. Gi det nye punktet navnet $P'$ med tilhørende koordinat $X'$. Beregn fra \\ $\{ X',Y,Z \}$ de sfæriske koordinatene $\phi, \lambda$ og $h$ til punktet $P'$.\\
+  \textit{Svar}:  
+  \begin{align*}
+    \phi=&\ang{59;39;58.35982}\\
+    \lambda=&\ang{10;46;36.62254}\\
+    h=&\SI{205.840}{\meter}
+  \end{align*}
+  
+  \item Gjenta prosedyren to ganger ved å legge til $\SI{100}{\meter}$ på henholdsvis $Y$- og $Z$-koordinaten $\{X,Y',Z\}$ og $\{X,Y,Z'\}$.\\
+  \textit{Svar}:
+  \begin{align*}
+    \phi=&\ang{59;40;0.57977}\\
+    \lambda=&\ang{10;46;44.11024}\\
+    h=&\SI{165.672}{\meter}
+  \end{align*} 
+  \begin{align*}
+    \phi=&\ang{59;40;2.73489}\\
+    \lambda=&\ang{10;46;37.81987}\\
+    h=&\SI{242.539}{\meter}
+  \end{align*}
+  
+  \item Hvor stor er differansen ($P-P'$) uttrykt i sfæriske koordinater når $P'$ er henholdsvis $\{X',Y,Z\}$, $\{X,Y',Z\}$ og $\{X,Y,Z'\}$?\\
+  \textit{Svar}:
+  \begin{align*}
+    \Delta\phi=&\ang{;;2.74191}\\
+    \Delta\lambda=&\ang{;;1.19733}\\
+    \Delta h=&\SI{-49.612}{\meter}
+  \end{align*} 
+  \begin{align*}
+    \Delta\phi=&\ang{;;0.52196}\\
+    \Delta\lambda=&\ang{;;6.29037}\\
+    \Delta h=&\SI{-9.444}{\meter}
+  \end{align*} 
+    \begin{align*}
+    \Delta\phi=&\ang{;;1.63316}\\
+    \Delta\lambda=&\ang{;;0}\\
+    \Delta h=&\SI{-86.311}{\meter}
+  \end{align*} 
+\end{enumerate}
+
+
+\textit{Ellipsoidiske koordinater}
+\item
+  \begin{enumerate}
+  \item Datumet EUREF89 benytter en GRS80 ellipsoide med store halvakse $a=\SI{6378137}{\meter}$ og eksentrisitet $e^{2}=6694380.02290 \cdot 10^{-9}$. Beregn følgende ellipsoidiske størrelser:
+  \begin{enumerate}
+    \item Flattrykning ($f$)\\
+    \textit{Svar}:
+    \begin{equation*}
+      f=1/298.257222101
+    \end{equation*}
+    \item Lille halvakse ($b$)\\
+    \textit{Svar}:
+    \begin{equation*}
+      b=\SI{6356752.314}{\meter}
+    \end{equation*}
+    \item Andre nummeriske eksentrisitet ($e'^{2}$)\\
+     \begin{equation*}
+      e'^{2}=0.0067394967755
+    \end{equation*}
+    \item Differansen mellom halvaksene ($a-b$)\\
+    \begin{equation*}      
+      a-b=\SI{21384.686}{\meter}
+    \end{equation*}
+  \end{enumerate}
+  \item Vis at den sfæriske koordinattransformasjonen\\ $\{x,y,z\} \rightarrow \{\phi,\lambda,h\}$ er et spesialtillfelle av ellipsoidiske koordinattransformasjonen. (hint: sett $e^{2}=0$)\\
+  \textit{Svar}:
+  \begin{align*}
+    N=&\frac{a}{(1-e^{2}\sin^{2} \phi)^{1/2}} \qquad e^{2}=0 \rightarrow N=a=b=R\\
+    \phi=&\arctan(Z/\sqrt{X^{2}+Y^{2}})\\
+    \lambda=&\arctan(Y/X)\\
+    h=&\sqrt{X^{2}+Y^{2}} \cos \phi + Z \sin \phi -R\\
+  \end{align*}
+  \item Betrakt koordinatene $\{\phi_{P},\lambda_{P},h_{P}\}$ til punkt $P$ som ellipsoidiske koordinater på en GRS80 ellipsoide. Beregn de tilhørende jordsentriske (ECEF) koordinatene $\{X_{P},Y_{P},Z_{P}\}$.\\
+  \textit{Svar}:
+  \begin{equation*}
+  P=
+  \begin{bmatrix}
+    \SI{3172302.746}{\meter}\\
+    \SI{603839.309}{\meter}\\
+    \SI{5481967.505}{\meter}\\
+  \end{bmatrix}
+  \end{equation*}    
+  
+  \item Hvor stor er differansen mellom de ''ellipsoidiske'' koordinatene $\{X_{P},Y_{P},Z_{P}\}$ til $P$ og de ''sfæriske'' koordinatene $\{X_{P},Y_{P},Z_{P}\}$ til $P$ fra forrige oppgave?\\
+  \textit{Svar}:
+  \begin{equation*}
+    \Delta P=
+    \begin{bmatrix}
+      \SI{7919.791}{\meter}\\
+      \SI{1507.511}{\meter}\\
+      \SI{-23166.591}{\meter}\\
+    \end{bmatrix}
+  \end{equation*}    
+  
+  \item Vis at en endring i vinkel på $\SI{1e-9}{\radian}$ i $\phi$ utgjør en avstand på $\SI{6}{\milli\meter}$ på jordoverflaten.\\
+  \textit{Svar}:
+  \begin{equation*}
+    b=R \cdot \alpha \rightarrow \SI{6378137}{\meter} \cdot \SI{1e-9}{\radian}=\SI{0.006}{\meter}
+  \end{equation*}    
+  
+  \item Beregn de ellipsoidiske koordinatene $\{\phi_{P},\lambda_{P},h_{P}\}$ ved iterasjon.\\
+  \textit{Svar}:
+  \begin{align*}
+    \phi_{P}=&\ang{59;40;1.10173}\\
+    \lambda_{P}=&\ang{10;46;37.81987}\\
+    h_{P}=&\SI{156.228}{\meter}
+  \end{align*}    
+  
+  \item Beregn de ellipsoidiske koordinatene $\{\phi_{P},\lambda_{P},h_{P}\}$ ved bruk av Bowrings metode.\\
+  \textit{Svar}:
+  \begin{align*}
+    \phi_{P}=&\ang{59;40;1.10173}\\
+    \lambda_{P}=&\ang{10;46;37.81987}\\
+    h_{P}=&\SI{156.228}{\meter}
+  \end{align*} 
+  
+  \item Hva er forskjellen mellom disse to metodene?\\
+  \textit{Svar}: Bowrings metode er på lukket form og krever ingen iterasjon. Metoden vil gi tilnærmet likt resultat som ved iterasjon for posisjoner i nærheten av jordens overflate. Forskjellen mellom disse to metodene neglisjerbar for den aktuelle posisjonen.
+  \end{enumerate}
+\end{enumerate}
+
+\end{document}
