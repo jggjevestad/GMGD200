@@ -15,14 +15,14 @@
    \huge{GMGD200}\\ \vspace{10mm}
 \end{center}
 
-\textbf{Oppgave 1a - Koordinatsystemer}
+\textbf{Oppgave 1 - Koordinatsystemer}
 
 \textit{Sfæriske koordinater}
 
 Gitt posisjon for bakkepunktet $P$ ved Tyholttårnet i Trondheim:
 \begin{align*}
-    \phi_{P}=&\ang{63;25;20.31234}\\
-    \Delta\lambda=&\ang{-0;17;43.85880}\\
+    \phi_{P}=&\ang{63;25;18.47803}\\
+    \Delta\lambda=&\ang{-0;17;8.46832}\\
     h_{P}=&\SI{165.432}{\meter}
 \end{align*}
 
@@ -62,7 +62,7 @@ Gitt posisjon for bakkepunktet $P$ ved Tyholttårnet i Trondheim:
     \item Flattrykning ($f$)
     \item Andre numeriske eksentrisitet ($e'^{2}$)
     \item Forskjellen mellom halvaksene ($a-b$)
-    \item Normalkrumningsradien (krumningsradien i første vertikal) $N(\phi_P)$ for punkt $P$.
+    \item Normalkrumningsradien $N(\phi_P)$ for punkt $P$.
   \end{enumerate}
   \item Vis matematisk at den sfæriske transformasjonen $\{\phi,\lambda,h\} \rightarrow \{X,Y,Z\}$ er et spesialtilfelle av den ellipsoidiske transformasjonen (hint: sett $a=b=R$ og dermed $e^2=0$).
   \item Betrakt koordinatene $\{\phi_{P},\lambda_{P},h_{P}\}$ til bakkepunktet $P$ som ellipsoidiske koordinater på GRS80. Beregn de korrekte ellipsoidiske ECEF-koordinatene $\{X_{P},Y_{P},Z_{P}\}$.
@@ -72,9 +72,9 @@ Gitt posisjon for bakkepunktet $P$ ved Tyholttårnet i Trondheim:
     \item Hvor mange meter på jordoverflaten ($R = \SI{6378137}{\meter}$) tilsvarer en endring på $1''$ (ett buesekund) i henholdsvis bredde ($\Delta\phi = 1''$) og lengde ($\Delta\lambda = 1''$) ved Tyholttårnets breddegrad?
     \item Hvorfor er en lengdegradsforskjell på $1''$ vesentlig kortere i meter i Trondheim enn ved ekvator?
   \end{enumerate}
-  \item Beregn de ellipsoidiske koordinatene $\{\phi_{P},\lambda_{P},h_{P}\}$ fra de ellipsoidiske ECEF-koordinatene ved hjelp av en iterativ prosedyre. Oppgi hvor mange iterasjoner som kreves før vinkelendringen er under $10^{-10}\text{ rad}$.
+  \item Beregn de ellipsoidiske koordinatene $\{\phi_{P},\lambda_{P},h_{P}\}$ fra de ellipsoidiske ECEF-koordinatene ved hjelp av en iterativ prosedyre. Oppgi hvor mange iterasjoner som kreves før vinkelendringen er mindre enn $10^{-10}\text{ rad}$.
   \item Beregn de samme koordinatene $\{\phi_{P},\lambda_{P},h_{P}\}$ ved hjelp av Bowrings lukkede formel (1976).
-  \item Sammenlign iterasjonsmetoden og Bowrings metode med hensyn til beregningskompleksitet, antall regnesteg og praktisk anvendelse i geodetisk programvare.
+  \item Sammenlign iterasjonsmetoden og Bowrings metode.
   \end{enumerate}
 \end{enumerate}
 
